@@ -6,12 +6,22 @@ from app.core.errors import AppException
 from app.core.logging import setup_logging
 from app.schemas.errors import ErrorResponse
 
+from fastapi.middleware.cors import CORSMiddleware
+
 def create_app() -> FastAPI:
     setup_logging()
     app = FastAPI(
         title=settings.PROJECT_NAME,
         version=settings.VERSION,
         openapi_url="/api/v1/openapi.json"
+    )
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
     )
 
     @app.exception_handler(AppException)
