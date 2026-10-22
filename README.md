@@ -237,7 +237,7 @@ As defined in [`AGENTS.md`](AGENTS.md):
 ---
 
 ## 📚 Documentation
-- [Architecture Overview](docs/architecture.md)
+- [Architecture Overview of the project](docs/architecture.md)
 - [Environment Configuration](docs/environment.md)
 - [Local Development Guide](docs/local-development.md)
 - [Testing Strategy](docs/testing.md)
