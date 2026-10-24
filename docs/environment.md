@@ -53,3 +53,17 @@ Exposed to the Next.js runtime (prefixed with `NEXT_PUBLIC_` for browser visibil
 1. **Never Commit Secrets**: All `.env`, `.env.local`, and sensitive configuration files are strictly ignored in `.gitignore`.
 2. **Synchronize `.env.example`**: Whenever a new environment variable is introduced, update the respective `.env.example` in root, `backend/`, and `frontend/`.
 3. **Production Secrets Injection**: In staging and production environments, inject variables using environment secrets (such as GitHub Secrets, AWS Secrets Manager, or Google Cloud Secret Manager) rather than hardcoded files.
+
+---
+
+## 4. Secret Hygiene & Audit Procedures
+
+- **Ignore Verification**: Verify that local configuration files are safely ignored before committing:
+  ```bash
+  git check-ignore -v .env backend/.env frontend/.env.local
+  ```
+- **Trackable Templates**: Confirm safe examples remain trackable:
+  ```bash
+  git ls-files -- '*env.example'
+  ```
+- **Incident Escalation**: If credentials or tokens are ever detected in Git history, do not attempt to silently rebase or remove files without reporting. Immediately revoke the compromised credential, notify team leads, and rotate keys in the respective provider console.
