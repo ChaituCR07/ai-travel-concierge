@@ -2,6 +2,10 @@
 
 The frontend application for **AI Travel Concierge** is built with **Next.js 14 (App Router)**, **React 18**, and **TypeScript**. It provides a reactive, responsive user interface for interactive travel planning, itinerary management, and real-time backend communication.
 
+> [!NOTE]
+> **Phase 1 Baseline Status**:
+> Currently implements the foundational client application shell: App Router views (`layout.tsx`, `page.tsx`), live `BackendStatus` component, typed `apiClient` abstraction, and Vitest test suites. Interactive travel booking workflows, itinerary renderers, and AI chat interfaces are planned for future phases.
+
 ---
 
 ## 🏗️ Architecture & Folder Structure
