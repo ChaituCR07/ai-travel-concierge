@@ -2,6 +2,10 @@
 
 The backend service for **AI Travel Concierge** is an asynchronous, high-performance REST API built with **FastAPI**, **SQLAlchemy 2.0**, and **Pydantic v2**. It handles core travel concierge logic, database persistence, session management, and external service integrations.
 
+> [!NOTE]
+> **Phase 1 Baseline Status**:
+> Currently implements the foundational micro-architecture: application factory (`create_app`), CORS middleware, structured logging, system routes (`/api/v1/health` and `/api/v1/version`), centralized `AppException` error handling, and baseline Alembic migration (`0001_baseline.py`). Domain-specific travel AI orchestration and external booking provider services are planned for future phases.
+
 ---
 
 ## 🏗️ Architecture & Folder Structure

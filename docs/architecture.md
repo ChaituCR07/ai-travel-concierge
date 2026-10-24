@@ -105,6 +105,26 @@ Data contracts are enforced symmetrically across the language boundary:
 
 ---
 
-## 5. Extensibility & Future AI Concierge Phases
+## 5. Phase Boundaries & Evolutionary Architecture
+
+### 5.1. Phase 1 Scope (Current Baseline)
+- Core FastAPI runtime with modular routing and OpenAPI generation.
+- Cross-origin resource sharing (CORS) configured for frontend client access.
+- Structured exception handling (`AppException` -> `ErrorResponse`).
+- Synchronized type definitions across backend and frontend.
+- Relational storage session management with empty Alembic baseline migration.
+- Next.js application shell with dynamic backend health monitoring component.
+- Cross-service smoke testing via stdlib Python script.
+
+### 5.2. Future Phase Scope (Planned)
 - **Agent Orchestrator**: Will integrate into `backend/app/services/agents/` to coordinate user travel queries, itinerary generation, and tool invocation.
 - **External Connectors**: Flight, hotel, and attractions APIs will be added as decoupled connectors under `backend/app/services/external/`.
+- **Session & Itinerary Persistence**: Travel models for trips, stops, bookings, and traveler preferences.
+
+---
+
+## 6. Security Boundaries
+
+1. **Client / Server Isolation**: The client has no direct database access; all mutations and queries traverse the authenticated REST API boundary.
+2. **Secret Containment**: Secrets and keys are restricted to backend environment variables; only variables explicitly prefixed with `NEXT_PUBLIC_` are exposed to the client bundle.
+3. **Input Validation**: Pydantic v2 enforces strict validation and sanitization on all incoming request payloads before reaching domain handlers.

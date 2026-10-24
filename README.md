@@ -5,15 +5,19 @@
 [![Next.js](https://img.shields.io/badge/Frontend-Next.js%2014-black.svg?logo=next.js&logoColor=white)](https://nextjs.org)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue.svg?logo=python&logoColor=white)](https://python.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-An intelligent, AI-powered travel concierge and itinerary planner designed to deliver highly personalized, context-aware travel experiences, smart booking suggestions, and autonomous trip management.
+An intelligent travel concierge and planning platform designed to deliver personalized travel experiences.
+
+> [!IMPORTANT]
+> **Phase 1 Project Status — Foundation & Baseline Architecture**:
+> The project is currently in **Phase 1 (Baseline Foundation)**. The repository establishes the decoupled micro-architecture, type-safe API client contracts, automated testing suites, database baseline migrations, and CI workflows.
+> **AI travel planning, autonomous itinerary generation, live travel provider APIs (flights, hotels), and booking integrations are scheduled for subsequent phases and are not yet implemented.**
 
 ---
 
 ## 📌 Table of Contents
 - [Overview](#-overview)
-- [Key Features](#-key-features)
+- [Phase 1 Implementation Status](#-phase-1-implementation-status)
 - [Technology Stack](#-technology-stack)
 - [Project Architecture](#-project-architecture)
 - [Repository Structure](#-repository-structure)
@@ -31,41 +35,47 @@ An intelligent, AI-powered travel concierge and itinerary planner designed to de
 
 ## 🧭 Overview
 
-**AI Travel Concierge** combines autonomous LLM capabilities with deterministic travel domain services to help travelers seamlessly plan, budget, and experience their trips.
+**AI Travel Concierge** will combine autonomous LLM capabilities with deterministic travel domain services to help travelers seamlessly plan, budget, and experience their trips.
 
-Whether designing multi-city vacations, discovering local hidden gems, managing travel schedules, or monitoring real-time flight and accommodation changes, the concierge serves as an adaptive companion throughout the entire travel lifecycle.
+The platform architecture is designed from the ground up to be headless, modular, and type-safe, separating application interfaces from core business orchestration.
 
 ---
 
-## ✨ Key Features
+## 📊 Phase 1 Implementation Status
 
-- **Personalized Trip Orchestration**: AI-assisted day-by-day itineraries tailored to traveler interests, pace, and dietary/budget preferences.
-- **Decoupled Architecture**: Robust headless FastAPI backend powering an interactive, high-performance Next.js web application.
-- **Strict Schema Synchronization**: Type-safe shared data contracts across Python (Pydantic v2) and TypeScript.
-- **Real-time Service Health & Versioning**: Self-healing API health checks, version reporting, and live frontend status indicators.
-- **Isolated Relational Database**: PostgreSQL storage with SQLAlchemy 2.0 and Alembic database version migrations.
-- **Automated CI/CD**: Multi-stage GitHub Actions workflows for continuous linting, backend test suites, and frontend verification for seamless usage.
+| Capability Area | Status | Implemented Components |
+| :--- | :--- | :--- |
+| **Backend Core** | ✅ **Implemented** | FastAPI `create_app()` factory, CORS middleware, structured logging, centralized `AppException` handling |
+| **System Endpoints** | ✅ **Implemented** | `GET /api/v1/health` and `GET /api/v1/version` with typed Pydantic responses |
+| **Data Layer** | ✅ **Implemented** | SQLAlchemy 2.0 session factory and Alembic baseline migration (`0001_baseline.py`) |
+| **Frontend Shell** | ✅ **Implemented** | Next.js 14 App Router layout, page view, and reactive `BackendStatus` component |
+| **API Client** | ✅ **Implemented** | Decoupled TypeScript `apiClient` with typed schema contracts and error handling |
+| **Automated Testing** | ✅ **Implemented** | Pytest suites for backend endpoints and Vitest test specs for frontend API client |
+| **Smoke Check & CI** | ✅ **Implemented** | Stdlib-only `scripts/smoke_test.py` and multi-job GitHub Actions workflow (`ci.yml`) |
+| **AI Itinerary Engine** | ⏳ *Planned* | LLM travel orchestration, user preference profiles, day-by-day planner (Phase 2+) |
+| **Provider Connectors** | ⏳ *Planned* | Live flight, hotel, and attractions API integrations (Phase 2+) |
+| **User Authentication** | ⏳ *Planned* | Multi-tenant user auth, JWT sessions, and saved trips (Phase 2+) |
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Layer | Technology | Description |
-| :--- | :--- | :--- |
-| **Backend** | Python 3.11+, FastAPI | Async REST API framework with automatic OpenAPI docs |
-| **ORM & Migrations** | SQLAlchemy 2.0, Alembic | Type-annotated relational modeling & schema migrations |
-| **Data Validation** | Pydantic v2 & Pydantic-Settings | Fast data serialization and type enforcement |
-| **Frontend** | Next.js 14 (App Router), React 18 | Modern React framework with server & client components |
-| **Client Language** | TypeScript 5.3+ | Strict static typing for frontend reliability |
-| **Testing** | Pytest, Vitest | Fast automated unit & integration testing |
-| **Containerization** | Docker, Docker Compose | Reproducible environments for PostgreSQL and services |
-| **CI / CD** | GitHub Actions | Continuous validation on every push and pull request |
+| Layer | Technology | Verified Version | Description |
+| :--- | :--- | :--- | :--- |
+| **Backend** | Python, FastAPI | Python 3.11+, FastAPI 0.110+ | Async REST API framework with automatic OpenAPI docs |
+| **ORM & Migrations** | SQLAlchemy, Alembic | SQLAlchemy 2.0+, Alembic 1.13+ | Relational modeling & schema migrations |
+| **Data Validation** | Pydantic v2 | Pydantic 2.6+, Settings 2.2+ | Strict data serialization and type enforcement |
+| **Frontend** | Next.js, React | Next.js 14.1, React 18.2 | Modern React framework with server & client components |
+| **Client Language** | TypeScript | TypeScript 5.3+ | Strict static typing for frontend reliability |
+| **Testing** | Pytest, Vitest | Pytest 8.0+, Vitest 1.3+ | Automated unit and integration testing |
+| **Containerization** | Docker, Compose | Docker Compose v2+ | Reproducible container configuration for PostgreSQL |
+| **CI / CD** | GitHub Actions | Ubuntu Latest | Continuous verification on every push and pull request |
 
 ---
 
 ## 🏛️ Project Architecture
 
-```
+```text
                       +-----------------------------+
                       |     Browser / Client        |
                       +--------------+--------------+

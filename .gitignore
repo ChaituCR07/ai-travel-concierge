@@ -4,7 +4,6 @@ __pycache__/
 *$py.class
 *.so
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -23,29 +22,53 @@ wheels/
 .installed.cfg
 *.egg
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
 .coverage
 htmlcov/
-.venv
+.venv/
 venv/
 ENV/
+env/
 
-# Node
+# Node & Frontend
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 .next/
 out/
 dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.eslintcache
 
-# Environments
+# Local databases
+*.sqlite
+*.sqlite3
+*.db
+
+# Environments & Secret Files
 .env
-.env.local
-.env.*.local
+.env.*
+.env*.local
+!.env.example
+!**/.env.example
 
-# IDE
+# IDE & Editor Local State
 .idea/
 .vscode/
 *.swp
 *.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Operating System Clutter
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini

@@ -84,6 +84,10 @@ In a third terminal from the repository root:
 python3 scripts/smoke_test.py
 ```
 
+> [!TIP]
+> **Isolated Test Execution (No Docker required)**:
+> Phase 1 baseline unit and route tests use mocked externals and do not require Docker or PostgreSQL to be running. You can run `pytest` directly in `backend/` and `npm test` in `frontend/`.
+
 ---
 
 ## 3. Common Troubleshooting

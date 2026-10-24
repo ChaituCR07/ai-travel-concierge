@@ -79,3 +79,11 @@ Run Alembic migrations during continuous deployment pipelines prior to traffic s
 alembic upgrade head
 ```
 Do not run migrations automatically inside auto-scaling container startup scripts to prevent concurrency deadlocks.
+
+---
+
+## 5. Rollback Strategy & Zero-Downtime Releases
+
+1. **Blue/Green or Rolling Deployment**: Route production traffic to the new revision only after the `/api/v1/health` readiness probe passes consistently.
+2. **Backward-Compatible Migrations**: Ensure database migrations are backward-compatible so that running containers of the previous version can continue processing requests during rollout.
+3. **Rollback Action**: If new container revisions fail readiness checks, orchestrators automatically halt routing and keep the previous stable revision active without user disruption.
